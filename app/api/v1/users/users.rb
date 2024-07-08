@@ -21,6 +21,7 @@ module V1
           requires :first_name, type: String, desc: 'First name'
           requires :last_name, type: String, desc: 'Last name'
           requires :birth, type: Date, desc: 'Birth date'
+          requires :phone, type: String, desc: "Phone"
         end
         post do
           return error!("Email already exists", 422) if User.find_by_email(params[:email])
