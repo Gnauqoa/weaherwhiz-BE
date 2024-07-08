@@ -25,11 +25,11 @@ module V1
         return Failure[:email_or_wallet_address_is_required, 'Email or username is required'] unless email
 
         @user = User.find_by(email:)
-
+        
         @user ||= User.find_by(username: email)
 
         return Failure[:invalid_username_or_password, 'Invalid email, username or password'] unless user
-
+        return Failure[:please_verify_your_email, 'Please verify your email'] unless user.verified
         Success(user)
       end
 
