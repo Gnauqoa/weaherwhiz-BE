@@ -6,6 +6,7 @@ ruby "3.1.2"
 gem 'rails', '~> 7.0'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
+gem 'sidekiq'
 gem 'grape'
 gem 'grape-entity'
 gem "grape-swagger"
