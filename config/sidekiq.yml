@@ -1,0 +1,6 @@
+:concurrency: 5
+:queues:
+  - [critical, 5]
+  - [default, 3]
+  - [low, 1]
+:retry: 3 # Set the global default retry count for all jobs
