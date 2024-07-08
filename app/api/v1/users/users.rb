@@ -34,9 +34,9 @@ module V1
 
           if result.success?
             status 201
-            generate_token_result = GenerateToken.new(user: result.success).call
-            token = generate_token_result.success
-            format_response({ access_token: token })
+            SendVerifyEmailJob.perform_async(result.success.id)
+
+            format_response({ message: "Register success." })
           else
             error!(failure_response(*result.failure), 422)
           end
