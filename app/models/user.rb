@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   validates_format_of :email, with: Devise.email_regexp, if: -> { email.present? }
   validates_format_of :username, with: /\A[\w\d_.]*\z/i, if: -> { username.present? }
-
+  has_many :verifications
   def initialize(*args)
     super(*args)
     self.username = SecureRandom.hex[0..19] unless username
@@ -48,6 +48,6 @@ class User < ApplicationRecord
   end
 
   def send_pin!
-    SendVerifyEmail.perform_now(self)
+    SendVerifyEmailJob.perform_now(self)
   end
 end
