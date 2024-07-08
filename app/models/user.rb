@@ -13,6 +13,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable,
          :omniauthable, :trackable
 
+  # Callbacks
+  after_create :send_pin!
+
   validates_format_of :email, with: Devise.email_regexp, if: -> { email.present? }
   validates_format_of :username, with: /\A[\w\d_.]*\z/i, if: -> { username.present? }
 
@@ -42,5 +45,9 @@ class User < ApplicationRecord
   end
   def fullname
     "#{first_name} #{last_name}"
+  end
+
+  def send_pin!
+    SendVerifyEmail.perform_now(self)
   end
 end
