@@ -20,7 +20,7 @@ module V1
 
             current_user.update!(
               notification_each_day: params[:notification_each_day]
-            ) if params[:notification_each_day].present?
+            ) 
 
             format_response(current_user)
           end
