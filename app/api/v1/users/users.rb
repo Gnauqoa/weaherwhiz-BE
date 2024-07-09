@@ -34,8 +34,17 @@ module V1
 
           if result.success?
             status 201
-            SendVerifyEmailJob.perform_async(result.success.id)
-
+            user = result.success
+            user.verifications.last.update!(
+              active: false
+            ) if user.verifications.last.present?
+            
+            verification = Verification.create!(
+              user_id: user.id,
+              verification_code: SecureRandom.hex(10),
+              expires_at: 5.minutes.from_now,
+            )
+            UserMailer.verify_email(user, verification).deliver
             format_response({ message: "Register success." })
           else
             error!(failure_response(*result.failure), 422)
