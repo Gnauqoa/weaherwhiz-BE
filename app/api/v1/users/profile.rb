@@ -3,6 +3,28 @@ module V1
   module Users
     class Profile < Base
       namespace :users do
+        resources :notification_weather do
+          desc 'Update location to notification weather'
+          params do
+            optional :q, type: String
+            optional :notification_each_day, type: Boolean
+          end
+          put do
+            if params[:q].present? 
+              query = Weathers::AutoComplete.new(q: params[:q]).call.success
+              current_user.update!(
+                location_id: query["id"],
+                location_query: "#{query["name"]}, #{query["country"]}"
+              )
+            end
+
+            current_user.update!(
+              notification_each_day: params[:notification_each_day]
+            ) if params[:notification_each_day].present?
+
+            format_response(current_user)
+          end
+        end
         resources :current do
           desc 'Get notifications of current user', summary: 'Get notifications of current user'
           params do

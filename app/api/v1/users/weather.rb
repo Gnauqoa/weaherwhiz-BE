@@ -9,7 +9,7 @@ module V1
             optional :days, type: Integer, desc: ""
           end
           get do
-            format_response(Weathers::Forecast.new(params).call)
+            format_response(Weathers::Forecast.new(params).call.success)
           end
         end
       end

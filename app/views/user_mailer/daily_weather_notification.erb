@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+ </head>
+ <body>
+  <h1>Hi, <%= @user.fullname %> </h1>
+  <p>This is weather status in <b><%= "#{@user["location_query"]}"%></b> </p>
+  <h2></h2>
+    <ul>
+      <li>Condition: <%= @forecast["day"]["condition"]["text"] %></li>
+      <li>Avg Temp: <%= @forecast["day"]["avgtemp_c"] %></li>
+      <li>Avg Humi: <%= @forecast["day"]["avghumidity"] %></li>
+      <li>Max wind: <%= @forecast["day"]["maxwind_mph"] %></li>
+    </ul>
+ </body>
+</html>
