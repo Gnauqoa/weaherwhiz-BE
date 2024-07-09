@@ -6,7 +6,7 @@
  </head>
  <body>
   <h1>Hi, <%= @user.fullname %> </h1>
-  <p>This is weather status in <b><%= "#{@user["location_query"]}"%></b> </p>
+  <p>We're form Weather Whiz, this is weather status in <b><%= "#{@user["location_query"]}"%></b> </p>
   <h2></h2>
     <ul>
       <li>Condition: <%= @forecast["day"]["condition"]["text"] %></li>

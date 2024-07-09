@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @verification = verification
     @FE_URL = ENV["FE_URL"]
-    mail(to: user.email, subject: "Verify your account")
+    mail(to: user.email, subject: "Verify your account on Weather Whiz")
   end
   def daily_weather_notification(user,forecast)
     @user = user
