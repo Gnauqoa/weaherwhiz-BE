@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_08_095235) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_09_094724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_095235) do
     t.boolean "verified", default: false
     t.bigint "location_id"
     t.boolean "notification_each_day"
+    t.string "location_query"
   end
 
   create_table "verifications", force: :cascade do |t|
