@@ -10,9 +10,14 @@ module V1
             optional :notification_each_day, type: Boolean
           end
           put do
-            current_user.update!(
-              location_id: ::V1::Weathers::AutoComplete.new(q: params[:q]).call.success["id"]
-            ) if params[:q].present? 
+            if params[:q].present? 
+              query = Weathers::AutoComplete.new(q: params[:q]).call.success
+              current_user.update!(
+                location_id: query["id"],
+                location_query: "#{query["name"]}, #{query["country"]}"
+              )
+            end
+
             current_user.update!(
               notification_each_day: params[:notification_each_day]
             ) if params[:notification_each_day].present?
