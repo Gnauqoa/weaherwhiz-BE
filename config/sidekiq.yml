@@ -5,3 +5,9 @@
   - [low, 1]
 :retry: 3 # Set the global default retry count for all jobs
 :timeout: 15
+:scheduler:
+  :dynamic: true
+  :schedule:
+    notify_weather:
+      cron: '0 0 * * *'
+      class: 'NotifyWeatherJob'
