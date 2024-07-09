@@ -25,7 +25,7 @@ module V1
         result = HTTParty.get(
           "#{ENV["WEATHER_API_HOST"]}/forecast.json?#{params_str}&days=#{1}"
         )
-        
+
         result["forecast"]["forecastday"].each do |forecastday|
           Weather.create!(
             day: forecastday["day"],
