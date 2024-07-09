@@ -1,6 +1,6 @@
 module V1
   module Weathers
-    class Forecast < ServiceBase
+    class Current < ServiceBase
       attr_reader :params
 
       def initialize(params)
@@ -14,18 +14,18 @@ module V1
           location_id = params[:location_id]
         end
 
-        forecasts = WeatherForecast.where(
+        current = Weather.where(
                               location_id:, 
-                              date: Date.current,
-                              days: params["days"]
+                              date: Date.current
         ).to_a
-        return Success(forecasts.first) if forecasts.length > 0
+        return Success(current.first) if current.length > 0
 
         params_arr = params.sort.to_h.map { |k, v| "#{k}=#{v}" }.sort
         params_str = params_arr.join('&')
         result = HTTParty.get(
-          "#{ENV["WEATHER_API_HOST"]}/forecast.json?#{params_str}"
+          "#{ENV["WEATHER_API_HOST"]}/forecast.json?#{params_str}&days=#{1}"
         )
+        
         result["forecast"]["forecastday"].each do |forecastday|
           Weather.create!(
             day: forecastday["day"],
@@ -36,14 +36,6 @@ module V1
             date: Date.parse(forecastday["date"]).beginning_of_day
           ) if Weather.where(location_id:, date: Date.parse(forecastday["date"]).beginning_of_day).to_a.length == 0
         end
-        WeatherForecast.create!(
-          location: result["location"],
-          current: result["current"],
-          forecast: result["forecast"],
-          days: params["days"],
-          location_id:,
-          date: Date.current
-        )
         Success(result)
       end
     end
