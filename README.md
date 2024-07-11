@@ -1,6 +1,6 @@
 # Weather whiz BE
 
-Welcome to the Streaming Music Backend repository! This backend system is designed to handle the server-side functionalities required for a streaming music service. Below you'll find information on how to set up, configure, and use this backend system.
+Welcome to the Weather Whiz repository! This service provides users with current or forecast weather information for a location and daily weather notifications
 
 ## Table of Contents
 
@@ -14,12 +14,9 @@ Welcome to the Streaming Music Backend repository! This backend system is design
 ## Features
 
 - **User Authentication:** Allows users to register, login, and manage their accounts securely.
-- **Music Catalog Management:** Supports the management of music tracks, albums, artists, and playlists.
-- **Streaming:** Enables streaming of music tracks with efficient handling of audio data.
-- **Search Functionality:** Provides search functionality to find music tracks, albums, and artists.
-- **Playlist Management:** Allows users to create, modify, and delete playlists.
-- **User Interaction:** Supports user interactions such as liking tracks, following artists, and sharing playlists.
-- **Administration:** Provides administrative features for managing users, music catalog, and system settings.
+- **Current weather information:** Supports the management of music tracks, albums, artists, and playlists.
+- **Forecast weather information:** Enables streaming of music tracks with efficient handling of audio data.
+- **Daily notify weather notification to user:** Provides search functionality to find music tracks, albums, and artists.
 
 ## Setup
 
@@ -39,16 +36,15 @@ To set up the project, follow these steps:
 
 The backend system can be configured using environment variables. Here are the key environment variables you may need to set:
 
-- `ADMIN_JWT_PRIVATE_KEY`: RSA PRIVATE KEY FOR ADMIN.
-- `ADMIN_JWT_PUBLIC_KEY`: RSA PUBLIC KEY FOR ADMIN.
 - `USER_JWT_PRIVATE_KEY`: RSA PRIVATE KEY FOR USER.
 - `USER_JWT_PUBLIC_KEY`: RSA PUBLIC KEY FOR USER.
-- `ARTIST_JWT_PRIVATE_KEY`: RSA PRIVATE KEY FOR ARTIST.
-- `ARTIST_JWT_PRIVATE_KEY`: RSA PRIVATE KEY FOR ARTIST.
 - `RAILS_ENV`: THE RAILS ENVIRONMENT.
 - `PORT`: PORT OF APPLICATION.
 - `MONGODB_HOST`: MONGODB HOST URL
-
+- `WEATHER_API_KEY`: Weather api key, get [here](https://www.weatherapi.com)
+- `WEATHER_API_HOST`: Weather API host, default [http://api.weatherapi.com/v1](http://api.weatherapi.com/v1)
+- `MAIL_ACCOUNT`: Gmail account.
+- `MAIL_PASSWORD`: Gmail password
 Or you can check in file `.env.example`
 
 Make sure to set these variables according to your environment before starting the server.
@@ -60,8 +56,6 @@ Once the backend server is up and running, you can interact with it using the pr
 
 The API documentation can be found:
 - User api docs: [user](http://localhost:3000/user-api-docs)
-- Artist api docs: [artist](localhost:3000/artist-api-docs)
-- Admin page: [admin](localhost:3000/admin)
 
 You can use tools like Postman or curl to make API requests and test the functionalities provided by the backend system.
 
