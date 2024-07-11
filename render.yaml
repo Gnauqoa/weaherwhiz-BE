@@ -1,12 +1,12 @@
 databases:
-  - name: weatherwhiz
-    databaseName: weatherwhizDB
-    user: weatherwhizApp
+  - name: weather-whiz
+    databaseName: weather-whiz
+    user: weather-whiz
     plan: free
 
 services:
   - type: web
-    name: mysite
+    name: weather-whiz
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
