@@ -2,9 +2,9 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.raise_delivery_errors = true
   config.hosts << ENV["BE_URL"] || "http://127.0.0.1:3000"
 
+  config.action_mailer.raise_delivery_errors = true
   host = "#{ENV["FE_URL"]}"
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.delivery_method = :smtp
